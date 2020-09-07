@@ -10,13 +10,19 @@ const Todo = () => {
     setModelTask("");
   };
 
+  String.prototype.capitalize = function () {
+    return this.replace(/(^|\s)([a-z])/g, function (m, p1, p2) {
+      return p1 + p2.toUpperCase();
+    });
+  };
+
   const createNewTask = (taskName) => {
     if (taskName.length > 0) {
       let date = new Date();
       let randomId = `${date.getHours()}${date.getMinutes()}${date.getSeconds()}${date.getUTCMilliseconds()}${date.getMonth()}${date.getUTCFullYear()}`;
       let format = {
         id: randomId,
-        taskName: taskName,
+        taskName: taskName.capitalize(),
         isDone: false,
       };
       taskData.push(format);
