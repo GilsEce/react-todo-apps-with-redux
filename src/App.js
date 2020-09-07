@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import Todo from "./Todos/todo";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  let todoResult = [];
+  let tenTimesTodo = () => {
+    let key = 1;
+    for (let x = 0; x < 1; x++) {
+      todoResult.push(<Todo name={"hello"} key={key++} />);
+    }
+  };
+
+  tenTimesTodo();
+
+  return <div className="App">{todoResult}</div>;
 }
 
 export default App;
