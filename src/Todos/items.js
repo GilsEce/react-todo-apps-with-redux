@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-
+import { connect } from 'react-redux';
 const Items = (props) => {
-  const { items, deleteTask } = props;
-
+  console.log(props);
+  const { tasks} = props;
   const itemsDeleteTaskHandler = (e) => {
-    deleteTask(e.target.value);
+    props.onDeleteTask(e.target.value);
   };
 
   let itemsElement = [];
-  items.map((d) => {
+  tasks.map((d) => {
     itemsElement.push(
       <div key={d.id}>
         <input readOnly value={d.taskName} key={d.id} id={d.id} />
@@ -22,4 +22,17 @@ const Items = (props) => {
   return <div style={{ marginTop: "1em" }}>{itemsElement}</div>;
 };
 
-export default Items;
+const mapStateToProps=state=>{
+  return {
+    tasks:state.tasks
+  }
+}
+
+
+const mapDispatchToProps=dispatch=>{
+  return {
+    onDeleteTask:(id)=>dispatch({type:'DELETE_TASK',payload:id})
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Items);

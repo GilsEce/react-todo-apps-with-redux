@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { connect } from 'react-redux';
 import Items from "./items";
 
-const Todo = () => {
-  const [taskData, setTaskData] = useState([]);
+
+const Todo = (props) => {
   const [modelTask, setModelTask] = useState("");
 
   const addTaskHandler = () => {
@@ -25,19 +26,12 @@ const Todo = () => {
         taskName: taskName.capitalize(),
         isDone: false,
       };
-      taskData.push(format);
-      setTaskData(taskData);
+  
+      props.onAddingTask(format);
     } else {
       //console.log("taskname is empty");
       return false;
     }
-  };
-
-  const deleteTaskHandler = (id) => {
-    let filterTaskData = taskData.filter((d) => {
-      return d.id !== id;
-    });
-    setTaskData(filterTaskData);
   };
 
   return (
@@ -53,9 +47,22 @@ const Todo = () => {
       />
       <button onClick={addTaskHandler}>Add</button>
 
-      <Items items={taskData} deleteTask={deleteTaskHandler} />
+      <Items />
     </>
   );
 };
 
-export default Todo;
+
+const mapStateToProps=state=>{
+  return {
+    tasks:state.tasks
+  }
+}
+
+const mapDispatchToProps=dispatch=>{
+  return {
+    onAddingTask:(newTask)=>dispatch({type:'ADDING_TASK',payload:newTask})
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Todo);
