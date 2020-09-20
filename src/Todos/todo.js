@@ -28,7 +28,7 @@ const Todo = () => {
       taskData.push(format);
       setTaskData(taskData);
     } else {
-      console.log("taskname is empty");
+      //console.log("taskname is empty");
       return false;
     }
   };
