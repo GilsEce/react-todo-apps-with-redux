@@ -1,17 +1,26 @@
-import React, { useState, useEffect } from "react";
-import { connect } from 'react-redux';
+import React from "react";
+import "./Todos.css";
+import { setDeleteTodo } from "../store/actions/todo";
+import { useSelector, useDispatch } from "react-redux";
 const Items = (props) => {
-  console.log(props);
-  const { tasks} = props;
+  const tasks = useSelector((state) => state.todos.tasks);
+  const dispatch = useDispatch();
   const itemsDeleteTaskHandler = (e) => {
-    props.onDeleteTask(e.target.value);
+    dispatch(setDeleteTodo(e.target.value));
   };
 
   let itemsElement = [];
+  const active = false;
   tasks.map((d) => {
-    itemsElement.push(
+    return itemsElement.push(
       <div key={d.id}>
-        <input readOnly value={d.taskName} key={d.id} id={d.id} />
+        <input
+          className={active ? "active" : null}
+          readOnly
+          value={d.taskName}
+          key={d.id}
+          id={d.id}
+        />
         <button value={d.id} onClick={itemsDeleteTaskHandler}>
           Delete
         </button>
@@ -22,17 +31,4 @@ const Items = (props) => {
   return <div style={{ marginTop: "1em" }}>{itemsElement}</div>;
 };
 
-const mapStateToProps=state=>{
-  return {
-    tasks:state.tasks
-  }
-}
-
-
-const mapDispatchToProps=dispatch=>{
-  return {
-    onDeleteTask:(id)=>dispatch({type:'DELETE_TASK',payload:id})
-  }
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(Items);
+export default Items;

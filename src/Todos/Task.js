@@ -1,35 +1,39 @@
 import React, { useState } from "react";
-import { connect } from 'react-redux';
-import Items from "./items";
+import { setAddTodo } from "../store/actions/todo";
+import { useDispatch } from "react-redux";
+import "./Todos.css";
+import Items from "./Items";
 
+Object.defineProperty(String.prototype, "capitalize", {
+  value: function (m, p1, p2) {
+    return this.replace(/(^|\s)([a-z])/g, function (m, p1, p2) {
+      return p1 + p2.toUpperCase();
+    });
+  },
+});
 
 const Todo = (props) => {
+  const dispatch = useDispatch();
   const [modelTask, setModelTask] = useState("");
-
   const addTaskHandler = () => {
     createNewTask(modelTask);
     setModelTask("");
   };
 
-  String.prototype.capitalize = function () {
-    return this.replace(/(^|\s)([a-z])/g, function (m, p1, p2) {
-      return p1 + p2.toUpperCase();
-    });
-  };
-
   const createNewTask = (taskName) => {
     if (taskName.length > 0) {
       let date = new Date();
-      let randomId = `${date.getHours()}${date.getMinutes()}${date.getSeconds()}${date.getUTCMilliseconds()}${date.getMonth()}${date.getUTCFullYear()}`;
+      let randomId = `${date.getHours()}${date.getDate()}${date.getMinutes()}${date.getSeconds()}${date.getUTCMilliseconds()}${
+        date.getMonth() + 1
+      }${date.getUTCFullYear()}`;
       let format = {
         id: randomId,
         taskName: taskName.capitalize(),
         isDone: false,
       };
-  
-      props.onAddingTask(format);
+
+      dispatch(setAddTodo(format));
     } else {
-      //console.log("taskname is empty");
       return false;
     }
   };
@@ -46,23 +50,9 @@ const Todo = (props) => {
         placeholder="Input Task Here"
       />
       <button onClick={addTaskHandler}>Add</button>
-
       <Items />
     </>
   );
 };
 
-
-const mapStateToProps=state=>{
-  return {
-    tasks:state.tasks
-  }
-}
-
-const mapDispatchToProps=dispatch=>{
-  return {
-    onAddingTask:(newTask)=>dispatch({type:'ADDING_TASK',payload:newTask})
-  }
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(Todo);
+export default Todo;
