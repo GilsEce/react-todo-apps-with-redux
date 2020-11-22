@@ -15,7 +15,7 @@ const Items = React.memo((props) => {
     return itemsElement.push(
       <div className="items-container" key={d.id}>
         <input
-          className={active ? "active" : null, "task-input",'task-items'}
+          className={(active ? "active" : null, "task-input", "task-items")}
           readOnly
           value={d.taskName}
           key={d.id}
