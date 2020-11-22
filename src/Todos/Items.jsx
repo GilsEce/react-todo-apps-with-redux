@@ -13,15 +13,19 @@ const Items = React.memo((props) => {
   const active = false;
   tasks.map((d) => {
     return itemsElement.push(
-      <div key={d.id}>
+      <div className="items-container" key={d.id}>
         <input
-          className={active ? "active" : null}
+          className={active ? "active" : null, "task-input",'task-items'}
           readOnly
           value={d.taskName}
           key={d.id}
           id={d.id}
         />
-        <button value={d.id} onClick={itemsDeleteTaskHandler}>
+        <button
+          className="btn-delete"
+          value={d.id}
+          onClick={itemsDeleteTaskHandler}
+        >
           Delete
         </button>
       </div>

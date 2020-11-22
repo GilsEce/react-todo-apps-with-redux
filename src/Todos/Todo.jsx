@@ -44,19 +44,25 @@ const Todo = React.memo((props) => {
   };
 
   return (
-    <>
-      <h1>Todo Apps</h1>
-
-      <input
-        value={modelTask}
-        onChange={(e) => {
-          setModelTask(e.target.value);
-        }}
-        placeholder="Input Task Here"
-      />
-      <button onClick={addTaskHandler}>Add</button>
-      <Items />
-    </>
+    <div className="todo-container">
+      <div className="newtask-container">
+        <h1 style={{ margin: "0", padding: "20px 0", color: "white",fontSize:'100px' }}>
+          Todo Apps
+        </h1>
+        <input
+          className="task-input"
+          value={modelTask}
+          onChange={(e) => {
+            setModelTask(e.target.value);
+          }}
+          placeholder="Input Task Here"
+        />
+        <button className="btn-newtask" onClick={addTaskHandler}>
+          Add
+        </button>
+        <Items />
+      </div>
+    </div>
   );
 });
 

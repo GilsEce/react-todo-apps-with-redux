@@ -1,3 +1,45 @@
-.active{
-    color: green;
+.todo-container {
+  min-height: 100vh;
+  min-width: 100%;
+  background-color: #31326f;
+  text-align: center;
+}
+
+.task-input {
+  padding: 0.5rem;
+  font-size: 30px;
+  font-weight: 300;
+  height: 100%;
+  width: 410px;
+}
+
+.newtask-container,
+.items-container {
+  margin: 0 auto;
+}
+
+.task-items {
+  margin: 0.3rem;
+  padding: 0.5rem;
+  font-size: 30px;
+  font-weight: 300;
+  height: 100%;
+}
+.btn-delete {
+  font-size:30px;
+  padding: 0.5rem;
+}
+
+.btn-newtask {
+  height:3.4rem;
+  font-size:30px;
+  padding: 0.5rem;
+  outline: none;
+  border: 0;
+  box-shadow: none;
+  background-color: #9ddfd3;
+}
+
+.active {
+  color: green;
 }
