@@ -4,20 +4,25 @@ import { useDispatch } from "react-redux";
 import "./Todos.css";
 import Items from "./Items";
 
-Object.defineProperty(String.prototype, "capitalize", {
-  value: function (m, p1, p2) {
-    return this.replace(/(^|\s)([a-z])/g, function (m, p1, p2) {
-      return p1 + p2.toUpperCase();
-    });
-  },
-});
-
-const Todo = (props) => {
+const Todo = React.memo((props) => {
   const dispatch = useDispatch();
   const [modelTask, setModelTask] = useState("");
   const addTaskHandler = () => {
     createNewTask(modelTask);
     setModelTask("");
+  };
+
+  const capitalize = (param) => {
+    let array_param = param.split(" ");
+    let result_array = [];
+    array_param.map((p) => {
+      return (result_array = [
+        ...result_array,
+        p.replace(/^./, p[0].toUpperCase()),
+      ]);
+    });
+
+    return result_array.join(" ");
   };
 
   const createNewTask = (taskName) => {
@@ -28,7 +33,7 @@ const Todo = (props) => {
       }${date.getUTCFullYear()}`;
       let format = {
         id: randomId,
-        taskName: taskName.capitalize(),
+        taskName: capitalize(taskName),
         isDone: false,
       };
 
@@ -53,6 +58,6 @@ const Todo = (props) => {
       <Items />
     </>
   );
-};
+});
 
 export default Todo;

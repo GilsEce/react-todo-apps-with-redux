@@ -2,7 +2,7 @@ import React from "react";
 import "./Todos.css";
 import { setDeleteTodo } from "../store/actions/todo";
 import { useSelector, useDispatch } from "react-redux";
-const Items = (props) => {
+const Items = React.memo((props) => {
   const tasks = useSelector((state) => state.todos.tasks);
   const dispatch = useDispatch();
   const itemsDeleteTaskHandler = (e) => {
@@ -29,6 +29,6 @@ const Items = (props) => {
   });
 
   return <div style={{ marginTop: "1em" }}>{itemsElement}</div>;
-};
+});
 
 export default Items;
