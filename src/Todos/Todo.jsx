@@ -13,7 +13,7 @@ const Todo = React.memo((props) => {
   };
 
   const capitalize = (param) => {
-    let array_param = param.split(" ");
+    let array_param = param.trim().split(" ");
     let result_array = [];
     array_param.map((p) => {
       return (result_array = [
