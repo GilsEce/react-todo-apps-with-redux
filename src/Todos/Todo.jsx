@@ -46,7 +46,7 @@ const Todo = React.memo((props) => {
   return (
     <div className="todo-container">
       <div className="newtask-container">
-        <h1 style={{ margin: "0", padding: "20px 0", color: "white",fontSize:'100px' }}>
+        <h1 style={{ margin: "0", padding: "20px 0", color: "#1877f2",fontSize:'100px' }}>
           Todo Apps
         </h1>
         <input

@@ -1,8 +1,9 @@
 .todo-container {
   min-height: 100vh;
   min-width: 100%;
-  background-color: #31326f;
+  background-color: rgb(240 242 245);
   text-align: center;
+  padding-bottom: 2rem;
 }
 
 .task-input {
@@ -10,7 +11,7 @@
   font-size: 30px;
   font-weight: 300;
   height: 100%;
-  width: 410px;
+  width: 395px;
 }
 
 .newtask-container,
@@ -26,18 +27,24 @@
   height: 100%;
 }
 .btn-delete {
-  font-size:30px;
+  font-size: 30px;
   padding: 0.5rem;
-}
-
-.btn-newtask {
-  height:3.4rem;
-  font-size:30px;
-  padding: 0.5rem;
+  color: white;
   outline: none;
   border: 0;
   box-shadow: none;
-  background-color: #9ddfd3;
+  background-color: #cc0000;
+}
+
+.btn-newtask {
+  padding: 0 15px;
+  height: 3.4rem;
+  font-size: 30px;
+  outline: none;
+  border: 0;
+  box-shadow: none;
+  color:white;
+  background-color: #42b72a;
 }
 
 .active {
